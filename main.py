@@ -1,18 +1,15 @@
 import sys
 from random import randint
 
-from PyQt6 import uic
 from PyQt6.QtGui import QPainter, QColor
 from PyQt6.QtWidgets import QApplication, QDialog
+from UI import Ui_Dialog
 
 
-class Painter(QDialog):
+class Painter(QDialog, Ui_Dialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
-        self.initUI()
-
-    def initUI(self):
+        self.setupUi(self)
         self.do_paint = False
         self.draw.clicked.connect(self.paint)
 
@@ -32,9 +29,11 @@ class Painter(QDialog):
         rand1 = randint(0, 50)
         rand2 = randint(0, 50)
         rand3 = randint(0, 50)
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(0, 256), randint(0, 256), randint(0, 256)))
         qp.drawEllipse(30, 30, 150 + rand1, 150 + rand1)
+        qp.setBrush(QColor(randint(0, 256), randint(0, 256), randint(0, 256)))
         qp.drawEllipse(400, 30, 150 + rand2, 150 + rand2)
+        qp.setBrush(QColor(randint(0, 256), randint(0, 256), randint(0, 256)))
         qp.drawEllipse(800, 30, 150 + rand3, 150 + rand3)
 
 
